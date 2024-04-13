@@ -664,13 +664,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1971476104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7afc8446006860a69a98776fa0b6cace, type: 3}
+  m_Script: {fileID: 11500000, guid: b0f600c120f54cc6a3df01d435482f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   crystalController: {fileID: 1307174733}
   clockHandView1: {fileID: 1636083760}
   clockHandView2: {fileID: 229432247}
-  crystalAmount: 5
 --- !u!1001 &1989602858
 PrefabInstance:
   m_ObjectHideFlags: 0

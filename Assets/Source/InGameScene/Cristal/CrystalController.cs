@@ -78,7 +78,7 @@ namespace Source.InGameScene.Cristal
                         center.y + offset * MathF.Sin(MathF.PI * i / crystalNumbers.Length * 2 + MathF.PI / 2));
             }
 
-            GameManager.Instance.crystalAmount = crystalNumbers.Length;
+            // GameManager.Instance.CrystalAmount = crystalNumbers.Length;
         }
 
         private CrystalView MakeCrystal(int index, int number)

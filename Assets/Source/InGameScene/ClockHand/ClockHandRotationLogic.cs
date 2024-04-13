@@ -24,8 +24,8 @@ namespace Source.InGameScene.ClockHand
             _entity = clockHandEntity;
             clockHandEntity.Cursor.Subscribe(x =>
             {
-                Vector2 lookDir = new(Mathf.Cos(x * Mathf.PI / GameManager.Instance.crystalAmount * 2),
-                    Mathf.Sin(x * Mathf.PI / GameManager.Instance.crystalAmount * 2));
+                Vector2 lookDir = new(Mathf.Cos(x * Mathf.PI / GameManager.Instance.CrystalAmount * 2),
+                    Mathf.Sin(x * Mathf.PI / GameManager.Instance.CrystalAmount * 2));
                 var tmp = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
                 if (tmp < 0)
                 {

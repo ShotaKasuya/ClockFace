@@ -118,12 +118,12 @@ namespace Source.InGameScene.ClockHand
         {
             if (num < 0)
             {
-                return num + GameManager.Instance.crystalAmount;
+                return num + GameManager.Instance.CrystalAmount;
             }
 
-            if (num >= GameManager.Instance.crystalAmount)
+            if (num >= GameManager.Instance.CrystalAmount)
             {
-                return num % GameManager.Instance.crystalAmount;
+                return num % GameManager.Instance.CrystalAmount;
             }
 
             return num;
