@@ -18,6 +18,7 @@ namespace Source.InGameScene.Cristal
         
         private Transform _transform;
         private CrystalView[] _crystals;
+        public int CrystalAmount => _crystals.Length;
 
         private void Start()
         {
@@ -65,7 +66,7 @@ namespace Source.InGameScene.Cristal
         private void BuildCrystals(int cristalNum)
         {
             // todo : make array
-            var crystalNumbers = new int[] { 1, 1, 2, 1, 1 };
+            var crystalNumbers = CrystalBuilder.BuildCrystals();
             
             _crystals = new CrystalView[crystalNumbers.Length];
             var center = centerTransform.position;

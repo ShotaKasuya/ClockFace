@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using Source.InGameScene.ClockHand;
 using Source.InGameScene.Cristal;
@@ -6,19 +7,18 @@ using UnityEngine;
 
 namespace Source.InGameScene
 {
-    public class GameManager
+    public class GameManager: IDisposable
     {
         private readonly CrystalController _crystalController;
         private readonly ClockHandController _clockHandController;
         
         private static GameManager _gameManager;
         public static GameManager Instance => _gameManager;
-        public readonly int CrystalAmount;
+        public int CrystalAmount => _crystalController.CrystalAmount;
 
-        public GameManager(int crystalAmount, CrystalController crystalController, ClockHandController clockHandController)
+        public GameManager(CrystalController crystalController, ClockHandController clockHandController)
         {
             _gameManager = this;
-            CrystalAmount = crystalAmount;
             _clockHandController = clockHandController;
             _crystalController = crystalController;
         }
@@ -70,6 +70,11 @@ namespace Source.InGameScene
                 return GameUpdateEntity.Continue;
             }
             return GameUpdateEntity.Fail;
+        }
+
+        public void Dispose()
+        {
+            _gameManager = null;
         }
     }
 }

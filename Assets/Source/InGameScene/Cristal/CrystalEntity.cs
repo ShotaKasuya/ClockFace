@@ -1,6 +1,6 @@
 namespace Source.InGameScene.Cristal
 {
-    public class CristalEntity
+    public class CrystalEntity
     {
         private int _index;
         public int Index => _index;

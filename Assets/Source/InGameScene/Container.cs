@@ -1,3 +1,4 @@
+using System;
 using Source.InGameScene.ClockHand;
 using Source.InGameScene.Cristal;
 using UnityEngine;
@@ -37,7 +38,7 @@ namespace Source.InGameScene
                 var logic2 = objectResolver2.Resolve<ClockHandRotationLogic>();
 
                 _clockHandController = new ClockHandController(entity1, logic1, entity2, logic2);
-                _gameManager = new GameManager(5, crystalController, _clockHandController);
+                _gameManager = new GameManager(crystalController, _clockHandController);
             }
         }
         
@@ -46,5 +47,9 @@ namespace Source.InGameScene
             _clockHandController.CallTick();
         }
 
+        private void OnDestroy()
+        {
+            _gameManager.Dispose();
+        }
     }
 }
