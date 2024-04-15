@@ -84,7 +84,7 @@ namespace Source.InGameScene.Cristal
             
             var cursorNext = Random.Range(0, emptyIndex.Length - 1);
 
-            if (cursorNext < cursor)
+            if (emptyIndex[cursorNext] < cursor)
             {
                 return emptyIndex[cursorNext];
             }
