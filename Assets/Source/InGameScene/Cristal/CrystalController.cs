@@ -26,13 +26,13 @@ namespace Source.InGameScene.Cristal
             switch (DifficultySaver.Difficulty)
             {
                 case Difficulty.Easy:
-                    BuildCrystals(Random.Range(4, 6));
+                    BuildCrystals(Random.Range(5, 7));
                     break;
                 case Difficulty.Normal:
-                    BuildCrystals(Random.Range(6, 8));
+                    BuildCrystals(Random.Range(7, 9));
                     break;
                 case Difficulty.Hard:
-                    BuildCrystals(Random.Range(8, 10));
+                    BuildCrystals(Random.Range(9, 12));
                     break;
             }
         }

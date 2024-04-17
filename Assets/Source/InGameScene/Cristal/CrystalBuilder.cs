@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Source.InGameScene.ClockHand;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -108,11 +109,6 @@ namespace Source.InGameScene.Cristal
             }
 
             return RotateDirection.Clockwise;
-        }
-        
-        private enum RotateDirection
-        {
-            Clockwise,CounterClockwise
         }
     }
 }

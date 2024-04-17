@@ -16,6 +16,7 @@ namespace Source.InGameScene.ClockHand
         private readonly ClockHandEntity _entity;
 
         private readonly ReactiveProperty<float> _rotateDirection = new ReactiveProperty<float>(0f);
+        private const float ALLOWABLE_ERROR = 1.0f;
 
         [Inject]
         public ClockHandRotationLogic(ClockHandView clockHandView, ClockHandEntity clockHandEntity)
@@ -47,7 +48,20 @@ namespace Source.InGameScene.ClockHand
         public void FixedTick()
         {
             float currentAngle = _view.ModelTransform.eulerAngles.z;
-            float newAngle = Mathf.MoveTowardsAngle(currentAngle, _rotateDirection.Value, _entity.RotateSpeed * Time.deltaTime);
+            float diff = Mathf.Abs(currentAngle - _rotateDirection.Value);
+            float newAngle;
+            if (diff < ALLOWABLE_ERROR)
+            {
+                newAngle = _rotateDirection.Value;
+            }
+            else if (_entity.Direction == RotateDirection.Clockwise)
+            {
+                newAngle = currentAngle + _entity.RotateSpeed * Time.fixedDeltaTime;
+            }
+            else
+            {
+                newAngle = currentAngle - _entity.RotateSpeed * Time.fixedDeltaTime;
+            }
             _view.ModelTransform.rotation = Quaternion.Euler(0, 0, newAngle);
         }
     }

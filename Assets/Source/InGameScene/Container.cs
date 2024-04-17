@@ -21,12 +21,12 @@ namespace Source.InGameScene
         {
             var containerBuilder1 = new ContainerBuilder();
             containerBuilder1.RegisterComponent(clockHandView1);
-            containerBuilder1.Register<ClockHandEntity>(Lifetime.Singleton);
+            containerBuilder1.Register(_ => new ClockHandEntity(RotateDirection.Clockwise), Lifetime.Scoped);
             containerBuilder1.Register<ClockHandRotationLogic>(Lifetime.Singleton);
 
             var containerBuilder2 = new ContainerBuilder();
             containerBuilder2.RegisterComponent(clockHandView2);
-            containerBuilder2.Register<ClockHandEntity>(Lifetime.Singleton);
+            containerBuilder2.Register(_ => new ClockHandEntity(RotateDirection.CounterClockwise), Lifetime.Scoped);
             containerBuilder2.Register<ClockHandRotationLogic>(Lifetime.Singleton);
 
             using IObjectResolver objectResolver1 = containerBuilder1.Build();
