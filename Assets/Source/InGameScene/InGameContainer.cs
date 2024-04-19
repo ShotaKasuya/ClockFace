@@ -7,7 +7,7 @@ using VContainer.Unity;
 
 namespace Source.InGameScene
 {
-    public class Container: MonoBehaviour
+    public class InGameContainer: MonoBehaviour
     {
         [SerializeField] private CrystalController crystalController;
         [SerializeField] private ClockHandView clockHandView1;

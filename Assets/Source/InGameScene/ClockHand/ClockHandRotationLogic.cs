@@ -16,7 +16,7 @@ namespace Source.InGameScene.ClockHand
         private readonly ClockHandEntity _entity;
 
         private readonly ReactiveProperty<float> _rotateDirection = new ReactiveProperty<float>(0f);
-        private const float ALLOWABLE_ERROR = 1.0f;
+        private const float ALLOWABLE_ERROR = 3.0f;
 
         [Inject]
         public ClockHandRotationLogic(ClockHandView clockHandView, ClockHandEntity clockHandEntity)

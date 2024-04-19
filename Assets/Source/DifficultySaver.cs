@@ -6,7 +6,7 @@ namespace Source
 {
     public static class DifficultySaver
     {
-        public static Difficulty Difficulty = Difficulty.Hard;
+        public static Difficulty Difficulty = Difficulty.Normal;
 
         public static int GetLength()
         {
