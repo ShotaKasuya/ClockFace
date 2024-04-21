@@ -39,6 +39,9 @@ namespace Source.InGameScene
 
                 _clockHandController = new ClockHandController(entity1, logic1, entity2, logic2);
                 _gameManager = new GameManager(crystalController, _clockHandController);
+                
+                logic1.Initialize();
+                logic2.Initialize();
             }
         }
         

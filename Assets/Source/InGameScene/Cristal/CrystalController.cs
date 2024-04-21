@@ -20,21 +20,10 @@ namespace Source.InGameScene.Cristal
         private CrystalView[] _crystals;
         public int CrystalAmount => _crystals.Length;
 
-        private void Start()
+        private void Awake()
         {
             _transform = transform;
-            switch (DifficultySaver.Difficulty)
-            {
-                case Difficulty.Easy:
-                    BuildCrystals(Random.Range(5, 7));
-                    break;
-                case Difficulty.Normal:
-                    BuildCrystals(Random.Range(7, 9));
-                    break;
-                case Difficulty.Hard:
-                    BuildCrystals(Random.Range(9, 12));
-                    break;
-            }
+            BuildCrystals();
         }
 
         public bool CanDisable(int index)
@@ -63,7 +52,7 @@ namespace Source.InGameScene.Cristal
             crystal.Disable();
         }
 
-        private void BuildCrystals(int cristalNum)
+        private void BuildCrystals()
         {
             // todo : make array
             var crystalNumbers = CrystalBuilder.BuildCrystals();

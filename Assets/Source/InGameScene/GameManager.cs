@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using Source.InGameScene.ClockHand;
 using Source.InGameScene.Cristal;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 namespace Source.InGameScene
@@ -25,12 +26,12 @@ namespace Source.InGameScene
 
         private void ClearEvent()
         {
-            Debug.Log("Clear");
+            SceneManager.LoadScene("Clear");
         }
 
         private void FailEvent()
         {
-            Debug.Log("Fail");
+            SceneManager.LoadScene("Fail");
         }
 
         public async void SetHand(int index, int number)

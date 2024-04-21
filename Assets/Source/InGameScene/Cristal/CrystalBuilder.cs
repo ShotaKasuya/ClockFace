@@ -44,9 +44,9 @@ namespace Source.InGameScene.Cristal
                         break;
                 }
 
-                Debug.Log($"cursor: {cursor}\n" +
-                          $"cursorNextTo: {cursorNextTo}\n" +
-                          $"set number: {arrayToReturn[cursor]}");
+                // Debug.Log($"cursor: {cursor}\n" +
+                //           $"cursorNextTo: {cursorNextTo}\n" +
+                //           $"set number: {arrayToReturn[cursor]}");
                 cursor = cursorNextTo;
             }
 

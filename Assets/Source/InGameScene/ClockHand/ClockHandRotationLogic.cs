@@ -10,20 +10,24 @@ using VContainer.Unity;
 
 namespace Source.InGameScene.ClockHand
 {
-    public class ClockHandRotationLogic 
+    public class ClockHandRotationLogic : IInitializable
     {
         private readonly ClockHandView _view;
         private readonly ClockHandEntity _entity;
 
         private readonly ReactiveProperty<float> _rotateDirection = new ReactiveProperty<float>(0f);
-        private const float ALLOWABLE_ERROR = 3.0f;
+        private const float ALLOWABLE_ERROR = 5.0f;
 
         [Inject]
         public ClockHandRotationLogic(ClockHandView clockHandView, ClockHandEntity clockHandEntity)
         {
             _view = clockHandView;
             _entity = clockHandEntity;
-            clockHandEntity.Cursor.Subscribe(x =>
+        }
+
+        public void Initialize()
+        {
+            _entity.Cursor.Subscribe(x =>
             {
                 Vector2 lookDir = new(Mathf.Cos(x * Mathf.PI / GameManager.Instance.CrystalAmount * 2),
                     Mathf.Sin(x * Mathf.PI / GameManager.Instance.CrystalAmount * 2));
@@ -32,12 +36,9 @@ namespace Source.InGameScene.ClockHand
                 {
                     tmp += 360f;
                 }
-
+                
                 _rotateDirection.Value = tmp;
-                // Debug.Log($"Set Cursor : {x}\n" +
-                //           $"look dir : {lookDir}");
             });
-            // _rotateDirection.Subscribe(x => Debug.Log($"{nameof(_rotateDirection)} : {x}"));
         }
 
         public bool IsCompleted()
