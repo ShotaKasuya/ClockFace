@@ -21,3 +21,4 @@ ExportedObj/
 *.unitypackage
 
 /.idea/
+Logs/*
