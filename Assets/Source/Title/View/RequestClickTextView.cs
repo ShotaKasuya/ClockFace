@@ -7,7 +7,7 @@ namespace Source.Title.View
     public class RequestClickTextView: MonoBehaviour, IGettableTransform
     {
         public Text ModelText => modelText;
-
+        
         public Transform ModelTransform
         {
             get;

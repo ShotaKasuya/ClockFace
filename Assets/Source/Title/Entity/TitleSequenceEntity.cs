@@ -1,9 +1,22 @@
-﻿using R3;
+﻿using System;
+using R3;
+using VContainer;
 
 namespace Source.Title.Entity
 {
-    public class TitleSequenceEntity
+    public class TitleSequenceEntity:IDisposable
     {
-        public readonly ReactiveProperty<TitleSequence> TitleSequence = new ReactiveProperty<TitleSequence>(Source.TitleSequence.Title);
+        public ReactiveProperty<TitleSequence> TitleSequence { get; }
+        
+        [Inject]
+        public TitleSequenceEntity()
+        {
+            TitleSequence = new ReactiveProperty<TitleSequence>();
+        }
+        
+        public void Dispose()
+        {
+            TitleSequence?.Dispose();
+        }
     }
 }

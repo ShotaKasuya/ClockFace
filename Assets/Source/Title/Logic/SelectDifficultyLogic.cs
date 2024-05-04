@@ -16,6 +16,7 @@ namespace Source.Title.Logic
         {
             _cursorView = cursorView;
             _difficultyViews = difficultyViews;
+            
             cursorView.InputEvent
                 .Subscribe(titleSequenceEntity, (kinds, state) =>
                 {

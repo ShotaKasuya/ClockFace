@@ -8,7 +8,8 @@ namespace Source.Title.View
         public bool IsVisible => gameObject.activeSelf;
         [SerializeField] private TitleSequence panelSequence;
         
-        public void SetIsVisible(bool to)
+        //Advise: 必ず引数に指定した物がSetされる訳ではないので、SetよりReverseとかにした方がいいかも？
+        public void ReverseVisible(bool to)
         {
             if (to != IsVisible)
             {
