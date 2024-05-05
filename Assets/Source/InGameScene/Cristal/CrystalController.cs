@@ -1,17 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Random = UnityEngine.Random;
 
 
 namespace Source.InGameScene.Cristal
 {
     public class CrystalController : MonoBehaviour
     {
-        [SerializeField] private GameObject crystalPrefab;
+        //Advise: MonoBehaviourを継承したコンポーネントをアタッチしたオブジェクトであれば、こんな風にかいてもアタッチできるよ～
+        [SerializeField] private CrystalView crystalPrefab;
 
         [SerializeField] private Transform centerTransform;
         [SerializeField] private float offset = 50f;
@@ -63,9 +60,9 @@ namespace Source.InGameScene.Cristal
             {
                 var crystal = MakeCrystal(i, crystalNumbers[i]);
                 _crystals[i] = crystal;
+                float theta = MathF.PI * i / crystalNumbers.Length * 2 + MathF.PI / 2;
                 crystal.transform.position =
-                    new Vector3(center.x + offset * MathF.Cos(MathF.PI * i / crystalNumbers.Length * 2 + MathF.PI / 2),
-                        center.y + offset * MathF.Sin(MathF.PI * i / crystalNumbers.Length * 2 + MathF.PI / 2));
+                    new Vector3(center.x + offset * MathF.Cos(theta), center.y + offset * MathF.Sin(theta));
             }
 
             // GameManager.Instance.CrystalAmount = crystalNumbers.Length;
@@ -73,8 +70,9 @@ namespace Source.InGameScene.Cristal
 
         private CrystalView MakeCrystal(int index, int number)
         {
-            var tmp = Instantiate(crystalPrefab, _transform);
-            var cristalView = tmp.GetComponent<CrystalView>();
+            //Advise: crystalPrefabがCrystalView型なので、GetComponentはなくてOK
+            var cristalView = Instantiate(crystalPrefab, _transform);
+            //var cristalView = tmp.GetComponent<CrystalView>();
             cristalView.Init(index, number);
             return cristalView;
         }

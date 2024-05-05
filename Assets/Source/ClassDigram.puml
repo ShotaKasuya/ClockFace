@@ -13,8 +13,10 @@ class Entity
 Entity <|-- Logic
 View <|-- Logic
 'Logic <|-- GameManager
-Controller <|-- GameManager
 Logic <|-- Controller
+Controller <|-- GameManager
+GameManager <|-- Container
+
 
 
 @enduml

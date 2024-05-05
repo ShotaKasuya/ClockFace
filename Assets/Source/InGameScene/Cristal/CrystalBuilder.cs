@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using Source.InGameScene.ClockHand;
-using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Source.InGameScene.Cristal
@@ -11,35 +8,36 @@ namespace Source.InGameScene.Cristal
     {
         public static int[] BuildCrystals()
         {
-            var length = DifficultySaver.GetLength();
-            var arrayToReturn = new int[length];
-            var cursor = Random.Range(0, length);
+            var crystalLength = DifficultySaver.GetCrystalLength();
+            var crystalsNumbers = new int[crystalLength];
+            var cursor = Random.Range(0, crystalLength);
 
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < crystalLength; i++)
             {
-                var emptyIndexes = GetEmptyIndexes(arrayToReturn);
-                var cursorNextTo = ChoseNext(cursor, arrayToReturn, emptyIndexes);
+                var emptyIndexes = GetNotUsedIndexes(crystalsNumbers);
+                var cursorNextTo = ChoseNext(cursor, crystalsNumbers, emptyIndexes);
 
+                //MEMO: ごめん！ここのロジックはちょっとよく分かんないのでレビュースキップします！！
                 switch (RandomDirection())
                 {
                     case RotateDirection.Clockwise:
                         if (cursor > cursorNextTo)
                         {
-                            arrayToReturn[cursor] = cursor - cursorNextTo;
+                            crystalsNumbers[cursor] = cursor - cursorNextTo;
                         }
                         else
                         {
-                            arrayToReturn[cursor] = cursor + (length - cursorNextTo);
+                            crystalsNumbers[cursor] = cursor + (crystalLength - cursorNextTo);
                         }
                         break;
                     case RotateDirection.CounterClockwise:
                         if (cursor>cursorNextTo)
                         {
-                            arrayToReturn[cursor] = cursorNextTo + (length - cursor);
+                            crystalsNumbers[cursor] = cursorNextTo + (crystalLength - cursor);
                         }
                         else
                         {
-                            arrayToReturn[cursor] = cursor - cursorNextTo;
+                            crystalsNumbers[cursor] = cursor - cursorNextTo;
                         }
                         break;
                 }
@@ -50,31 +48,34 @@ namespace Source.InGameScene.Cristal
                 cursor = cursorNextTo;
             }
 
-            return arrayToReturn;
+            return crystalsNumbers;
         }
 
-        private static int[] GetEmptyIndexes(int[] array)
+        //Advise: Emptyだと何も割り当てられてないみたいなイメージがある（intはあり得ないけど参照型とかなら有り得る）ので。(完っ全に個人的な意見です)
+        
+        private static int[] GetNotUsedIndexes(int[] array)
         {
-            var arrayToReturn = new int[array.Count(x => x == 0)];
+            var notUsedArray = new int[array.Count(x => x == 0)];
 
             var counter = 0;
             for (int i = 0; i < array.Length; i++)
             {
                 if (array[i] == 0)
                 {
-                    arrayToReturn[counter] = i;
+                    notUsedArray[counter] = i;
                     counter++;
                 }
             }
 
-            return arrayToReturn;
+            return notUsedArray;
         }
 
-        private static int ChoseNext(int cursor, int[] array, int[] emptyIndex)
+        private static int ChoseNext(int cursor, int[] crystalNumbers, int[] emptyIndexes)
         {
-            if (emptyIndex.Length == 1) // Last
+            //MEMO: ごめん！ここのロジックはちょっとよく分かんないのでレビュースキップします！！
+            if (emptyIndexes.Length == 1) // Last
             {
-                var tmp = Random.Range(0, array.Length-1);
+                var tmp = Random.Range(0, crystalNumbers.Length-1);
                 if (tmp >= cursor)
                 {
                     return tmp + 1;
@@ -83,14 +84,14 @@ namespace Source.InGameScene.Cristal
                 return tmp;
             }
             
-            var cursorNext = Random.Range(0, emptyIndex.Length - 1);
+            var cursorNext = Random.Range(0, emptyIndexes.Length - 1);
 
-            if (emptyIndex[cursorNext] < cursor)
+            if (emptyIndexes[cursorNext] < cursor)
             {
-                return emptyIndex[cursorNext];
+                return emptyIndexes[cursorNext];
             }
 
-            return emptyIndex[cursorNext + 1];
+            return emptyIndexes[cursorNext + 1];
         }
 
         public static int[] BuildCrystalsTemp()
@@ -100,15 +101,12 @@ namespace Source.InGameScene.Cristal
 
         private static RotateDirection RandomDirection()
         {
-            switch (Random.Range(0,1))
+            return Random.Range(0, 1) switch //Question: これ0しか出力されなくない？
             {
-                case 0:
-                    return RotateDirection.Clockwise;
-                case 1:
-                    return RotateDirection.CounterClockwise;
-            }
-
-            return RotateDirection.Clockwise;
+                0 => RotateDirection.Clockwise,
+                1 => RotateDirection.CounterClockwise,
+                _ => RotateDirection.Clockwise
+            };
         }
     }
 }

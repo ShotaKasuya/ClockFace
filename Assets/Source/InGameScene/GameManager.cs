@@ -2,12 +2,12 @@ using System;
 using Cysharp.Threading.Tasks;
 using Source.InGameScene.ClockHand;
 using Source.InGameScene.Cristal;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
 namespace Source.InGameScene
 {
+    //Advise: GameManagerというよりInGameManagerの方が適当かも
     public class GameManager: IDisposable
     {
         private readonly CrystalController _crystalController;
@@ -26,11 +26,14 @@ namespace Source.InGameScene
 
         private void ClearEvent()
         {
+            //Advise: シーン名は、後々の変更に対応しやすくするために、シーン名の文字列定義したクラスとか作っとくのオススメ。
+            //（今回、シーンロードを担当する専用のクラスとかがないので特に。）
             SceneManager.LoadScene("Clear");
         }
 
         private void FailEvent()
         {
+            //Advise: 上記と同じく
             SceneManager.LoadScene("Fail");
         }
 

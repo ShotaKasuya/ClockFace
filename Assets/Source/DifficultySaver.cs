@@ -34,8 +34,8 @@ namespace Source
         }
 
 
-        
-        public static int GetLength()
+        //Advise: 難しさ（DifficultySaverより）の長さ...？　という解釈にならないように修正。LengthじゃなくてCountでもいいかも。
+        public static int GetCrystalLength()
         {
             //Advise: こういう書き方もあります。参考程度に...
             switch (CurrentDifficulty)
