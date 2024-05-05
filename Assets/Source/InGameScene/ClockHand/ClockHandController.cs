@@ -23,8 +23,6 @@ namespace Source.InGameScene.ClockHand
             _clockHandEntity2 = clockHandEntity2;
             _clockHandRotationLogic1 = clockHandRotationLogic1;
             _clockHandRotationLogic2 = clockHandRotationLogic2;
-            // _clockHandEntity1.Cursor.Subscribe(x => Debug.Log($"Set to 1 : {x}"));
-            // _clockHandEntity2.Cursor.Subscribe(x => Debug.Log($"Set to 2 : {x}"));
         }
 
         public (int, int) GetClockHandCursor()
@@ -68,9 +66,6 @@ namespace Source.InGameScene.ClockHand
         {
             //Advise: もうちょいこのメソッド内の処理を別のメソッドに分割していった方がいいと思う。
             //MEMO: ごめん！ここのロジックはちょっとよく分かんないのでレビュースキップします！！
-
-            // Debug.Log($"called : {nameof(SetHand)}\n" +
-            //           $"index : {index}, number : {number}");
             if (!_firstRotationIsCalled)
             {
                 _firstRotationIsCalled = true;

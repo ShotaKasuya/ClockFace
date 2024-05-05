@@ -52,7 +52,6 @@ namespace Source.InGameScene.Cristal
         }
 
         //Advise: Emptyだと何も割り当てられてないみたいなイメージがある（intはあり得ないけど参照型とかなら有り得る）ので。(完っ全に個人的な意見です)
-        
         private static int[] GetNotUsedIndexes(int[] array)
         {
             var notUsedArray = new int[array.Count(x => x == 0)];
@@ -75,6 +74,7 @@ namespace Source.InGameScene.Cristal
             //MEMO: ごめん！ここのロジックはちょっとよく分かんないのでレビュースキップします！！
             if (emptyIndexes.Length == 1) // Last
             {
+                //Advise: tmpだと意味が分からないので、変数名はちゃんと考えた方が良き。分かりづらい変数名しか思いつかないのであれば、変数の意味についてコメントを残すのも手。
                 var tmp = Random.Range(0, crystalNumbers.Length-1);
                 if (tmp >= cursor)
                 {
@@ -101,6 +101,7 @@ namespace Source.InGameScene.Cristal
 
         private static RotateDirection RandomDirection()
         {
+            //Advise: switchはこういう書き方もあるよ！
             return Random.Range(0, 1) switch //Question: これ0しか出力されなくない？
             {
                 0 => RotateDirection.Clockwise,

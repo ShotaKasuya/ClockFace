@@ -62,6 +62,8 @@ namespace Source.InGameScene
             var (cursor1, cursor2) = _clockHandController.GetClockHandCursor();
             var isCan1 = _crystalController.CanDisable(cursor1);
             var isCan2 = _crystalController.CanDisable(cursor2);
+            
+            //Advise: 使わなそうなコメントアウトがあるなら //TODO: 後で消す とか書いとくと、コメントアウトを綺麗にしたい時（レビュー提出時等）、検索に引っかかってくれて便利。
             // Debug.Log($"cursor1: {cursor1} : {isCan1}\n" +
             //           $"cursor2: {cursor2}: {isCan2}");
             
