@@ -1,26 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using R3;
-using UnityEngine;
 using VContainer;
 
 namespace Source.InGameScene.ClockHand
 {
-    public class ClockHandEntity
+    public class ClockHandEntity:IDisposable
     {
-        public readonly RotateDirection Direction;
-        public readonly ReactiveProperty<int> Cursor = new ReactiveProperty<int>(0);
-        private Vector2 _targetDirection;
-        public readonly float RotateSpeed = 100f;
+        public RotateDirection Direction { get; }
+        public ReactiveProperty<int> Cursor { get; }
+        public float RotateSpeed => 100f;
 
         public void SetCursor(int cursor)
         {
             Cursor.Value = cursor;
         }
 
+        //Question: [Inject]っていらないの？
+        [Inject]
         public ClockHandEntity(RotateDirection direction)
         {
             Direction = direction;
+            Cursor = new ReactiveProperty<int>(0);
+        }
+
+        public void Dispose()
+        {
+            Cursor?.Dispose();
         }
     }
 }

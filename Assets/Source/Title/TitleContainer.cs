@@ -1,14 +1,9 @@
-using System;
-using System.Collections;
+//Advise: いらないusingは消しましょう！
 using System.Collections.Generic;
-using R3;
-using ScriptableObjects.Title;
-using Source.Title;
 using Source.Title.Entity;
 using Source.Title.Logic;
 using Source.Title.View;
 using UnityEngine;
-using UnityEngine.UI;
 using VContainer;
 using VContainer.Unity;
 
@@ -16,13 +11,16 @@ namespace Source.Title
 {
     public class TitleContainer : LifetimeScope
     {
+        //Advise: ~Baseって書くと基底クラスと勘違いされるので、データベースの時は Database にしてbを小文字にした方が良き。
         [SerializeField] private List<TitlePanelView> panelDataBase;
         [SerializeField] private RequestClickTextView requestClickText;
         [SerializeField] private DifficultyCursorView difficultyCursorView;
         [SerializeField] private List<DifficultyView> difficultyViews;
-
-        private SelectDifficultyLogic _selectDifficultyLogic;
-        private PanelSequenceLogic _panelSequenceLogic;
+        
+        //Advise: どうせこの後使わないなら変数として保持しておく必要ないかも。
+        //private SelectDifficultyLogic _selectDifficultyLogic;
+        //private PanelSequenceLogic _panelSequenceLogic;
+        
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterComponent(requestClickText).As<IGettableTransform>();
@@ -39,8 +37,8 @@ namespace Source.Title
         private void Start()
         {
             var sequence = Container.Resolve<TitleSequenceEntity>();
-            _selectDifficultyLogic = new SelectDifficultyLogic(difficultyCursorView, difficultyViews, sequence);
-            _panelSequenceLogic = new PanelSequenceLogic(panelDataBase, sequence);
+            new SelectDifficultyLogic(difficultyCursorView, difficultyViews, sequence);
+            new PanelSequenceLogic(panelDataBase, sequence);
         }
     }
 }

@@ -2,12 +2,12 @@ using System;
 using Cysharp.Threading.Tasks;
 using Source.InGameScene.ClockHand;
 using Source.InGameScene.Cristal;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
 namespace Source.InGameScene
 {
+    //Advise: GameManagerというよりInGameManagerの方が適当かも
     public class GameManager: IDisposable
     {
         private readonly CrystalController _crystalController;
@@ -26,11 +26,14 @@ namespace Source.InGameScene
 
         private void ClearEvent()
         {
+            //Advise: シーン名は、後々の変更に対応しやすくするために、シーン名の文字列定義したクラスとか作っとくのオススメ。
+            //（今回、シーンロードを担当する専用のクラスとかがないので特に。）
             SceneManager.LoadScene("Clear");
         }
 
         private void FailEvent()
         {
+            //Advise: 上記と同じく
             SceneManager.LoadScene("Fail");
         }
 
@@ -59,6 +62,8 @@ namespace Source.InGameScene
             var (cursor1, cursor2) = _clockHandController.GetClockHandCursor();
             var isCan1 = _crystalController.CanDisable(cursor1);
             var isCan2 = _crystalController.CanDisable(cursor2);
+            
+            //Advise: 使わなそうなコメントアウトがあるなら //TODO: 後で消す とか書いとくと、コメントアウトを綺麗にしたい時（レビュー提出時等）、検索に引っかかってくれて便利。
             // Debug.Log($"cursor1: {cursor1} : {isCan1}\n" +
             //           $"cursor2: {cursor2}: {isCan2}");
             

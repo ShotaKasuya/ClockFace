@@ -1,9 +1,6 @@
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using R3;
 using UnityEngine;
 using VContainer;
-using VContainer.Unity;
 
 namespace Source.InGameScene.ClockHand
 {
@@ -26,8 +23,6 @@ namespace Source.InGameScene.ClockHand
             _clockHandEntity2 = clockHandEntity2;
             _clockHandRotationLogic1 = clockHandRotationLogic1;
             _clockHandRotationLogic2 = clockHandRotationLogic2;
-            // _clockHandEntity1.Cursor.Subscribe(x => Debug.Log($"Set to 1 : {x}"));
-            // _clockHandEntity2.Cursor.Subscribe(x => Debug.Log($"Set to 2 : {x}"));
         }
 
         public (int, int) GetClockHandCursor()
@@ -35,6 +30,7 @@ namespace Source.InGameScene.ClockHand
             return (_clockHandEntity1.Cursor.Value, _clockHandEntity2.Cursor.Value);
         }
 
+        //Advise: Completedだと、このクラスの役割が終わった。みたいな意味に取れるかも...（完全に個人の意見です）
         public bool IsCompleted()
         {
             return _clockHandRotationLogic1.IsCompleted() & _clockHandRotationLogic2.IsCompleted();
@@ -68,8 +64,8 @@ namespace Source.InGameScene.ClockHand
         
         public async void SetHand(int index, int number)
         {
-            // Debug.Log($"called : {nameof(SetHand)}\n" +
-            //           $"index : {index}, number : {number}");
+            //Advise: もうちょいこのメソッド内の処理を別のメソッドに分割していった方がいいと思う。
+            //MEMO: ごめん！ここのロジックはちょっとよく分かんないのでレビュースキップします！！
             if (!_firstRotationIsCalled)
             {
                 _firstRotationIsCalled = true;

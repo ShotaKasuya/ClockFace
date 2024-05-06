@@ -1,6 +1,4 @@
-﻿using R3;
-using Source.Title.Entity;
-using UnityEngine;
+﻿using Source.Title.Entity;
 using UnityEngine.SceneManagement;
 using VContainer;
 using VContainer.Unity;
@@ -20,6 +18,7 @@ namespace Source.Title.Logic
             }
         }
 
+        //Advise: Sequenceは基本的に名詞だし、他動詞と見ても順序づけるという意味なので、メソッド名としては不適当かなと思います！
         private void Sequence(TitleSequence current)
         {
             switch (current)

@@ -318,6 +318,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CristalManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7014284783198586562, guid: 953d8eb7cbd7d8b87a9d2de30bcd7a02, type: 3}
+      propertyPath: crystalPrefab
+      value: 
+      objectReference: {fileID: 2530639218851216135, guid: a421a38c0e153a1499f486eaff34a437, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -30,6 +30,7 @@ namespace Source
             _logger.Log("LoggerTest");
         }
 
+        //Advise: CalculatorTestは名詞（修飾語＋名詞）になってない？メソッドは動詞から始まるように
         public void CalculatorTest(int a, int b)
         {
             int result = _calculator.Add(a, b);

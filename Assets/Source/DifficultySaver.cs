@@ -11,6 +11,7 @@ namespace Source
 
         public static void MoreHard()
         {
+            //Advise: 下記MoreEasyメソッドのコメントを参照
             if (CurrentDifficulty >= Enum.GetValues(typeof(Difficulty)).Cast<Difficulty>().Max())
             {
                 CurrentDifficulty = Difficulty.Easy;
@@ -22,19 +23,21 @@ namespace Source
         
         public static void MoreEasy()
         {
-            if (CurrentDifficulty <= Enum.GetValues(typeof(Difficulty)).Cast<Difficulty>().Min())
+            //Advise: CurrentDifficulty = Difficulty.Hard; って書いちゃうとDifficultyの中身に依存することになる。
+            //折角if文の中はDifficultyの数に依存しないように工夫してるのに、この一文は依存してるのもったいないので、以下の書き方を推奨。
+            if (CurrentDifficulty <= 0)
             {
-                CurrentDifficulty = Difficulty.Hard;
+                CurrentDifficulty = Enum.GetValues(typeof(Difficulty)).Cast<Difficulty>().Max();
                 return;
             }
-
             CurrentDifficulty--;
         }
 
 
-        
-        public static int GetLength()
+        //Advise: 難しさ（DifficultySaverより）の長さ...？　という解釈にならないように修正。LengthじゃなくてCountでもいいかも。
+        public static int GetCrystalLength()
         {
+            //Advise: こういう書き方もあります。参考程度に...
             switch (CurrentDifficulty)
             {
                 case Difficulty.Easy:
@@ -43,11 +46,10 @@ namespace Source
                     return Random.Range(6, 9);
                 case Difficulty.Hard:
                     return Random.Range(9, 14);
-                
+                default:
+                    Debug.LogError("It shouldn't arrive");
+                    return 0;
             }
-
-            Debug.LogError("It shouldn't arrive");
-            return 0;
         }
     }
 }
