@@ -14,7 +14,7 @@ namespace Source.InGameScene.Cristal
 
             for (int i = 0; i < crystalLength; i++)
             {
-                var emptyIndexes = GetNotUsedIndexes(crystalsNumbers);
+                var emptyIndexes = GetEmptyIndexes(crystalsNumbers);
                 var cursorNextTo = ChoseNext(cursor, crystalsNumbers, emptyIndexes);
 
                 //MEMO: ごめん！ここのロジックはちょっとよく分かんないのでレビュースキップします！！
@@ -51,8 +51,7 @@ namespace Source.InGameScene.Cristal
             return crystalsNumbers;
         }
 
-        //Advise: Emptyだと何も割り当てられてないみたいなイメージがある（intはあり得ないけど参照型とかなら有り得る）ので。(完っ全に個人的な意見です)
-        private static int[] GetNotUsedIndexes(int[] array)
+        private static int[] GetEmptyIndexes(int[] array)
         {
             var notUsedArray = new int[array.Count(x => x == 0)];
 
